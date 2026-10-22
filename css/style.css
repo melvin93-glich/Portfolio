@@ -374,14 +374,23 @@ html.is-loaded body { overflow: auto; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
 @media (max-width: 900px) {
-  .section--hero { justify-content: flex-start; padding-top: 7.5rem; padding-bottom: 5rem; }
+  .section--hero {
+    justify-content: flex-start;
+    padding-top: 6.5rem; padding-bottom: 4rem;
+  }
   .hero-art-wrap {
     position: relative; top: auto; right: auto; transform: none;
-    width: 148px; margin-bottom: 2rem; align-self: flex-end;
+    width: clamp(180px, 52vw, 230px);
+    margin: 0 0 1.5rem auto;
+    align-self: flex-end;
   }
   .hero-portrait-caption { display: none; }
   .hero-badge { display: none; }
   .hero-content { max-width: 100%; }
+  .hero-eyebrow { margin-bottom: 1rem; }
+  .hero-name { margin-bottom: 1.25rem; }
+  .hero-tagline { margin-bottom: 1.5rem; }
+  .hero-actions { margin-bottom: 2rem; }
 }
 
 /* ==========================================
@@ -761,18 +770,43 @@ html.is-loaded body { overflow: auto; }
    RESPONSIVE
    ========================================== */
 @media (max-width: 768px) {
-  .hero-art-wrap { width: 132px; }
   .hero-scroll { display: none; }
+  .section--about { padding: 4.5rem 0 4rem; }
+  .section--work { padding: 4.5rem 0 3rem; }
+  .section--journey, .section--stack, .section--achievements { padding: 4.5rem 0; }
+  .section--contact { padding: 5.5rem 0 4.5rem; }
+  .section-heading { margin-bottom: 1.5rem; }
+  .work-list { margin-top: 2.5rem; }
+  .timeline { margin-top: 2rem; }
+  .timeline-item { padding-bottom: 2.25rem; }
+  .stack-groups { margin-top: 2rem; gap: 1.5rem; }
+  .certifications { margin-top: 2.5rem; }
+  .big-stats { margin: 2rem 0; gap: 1rem; }
+  .big-stat { padding: 1rem; }
+  .cp-cards { margin: 2rem 0; }
+  .achievement-list { margin-top: 2rem; }
+  .contact-copy { margin-bottom: 2rem; }
+  .footer { padding: 2.5rem 0 1.5rem; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .big-stats { grid-template-columns: repeat(2, 1fr); }
   .cp-cards { grid-template-columns: 1fr; }
   .footer-top { flex-direction: column; gap: 1.5rem; text-align: center; }
 }
 @media (max-width: 480px) {
-  .hero-actions { flex-direction: column; }
+  .section--about, .section--work, .section--journey,
+  .section--stack, .section--achievements { padding: 3.75rem 0; }
+  .section--contact { padding: 4.5rem 0 3.5rem; }
+  .hero-actions { flex-direction: column; gap: .75rem; margin-bottom: 1.75rem; }
   .hero-actions .btn { width: 100%; justify-content: center; }
-  .stats-grid { grid-template-columns: 1fr; }
-  .big-stats { grid-template-columns: 1fr; }
+  .hero-meta {
+    flex-direction: column; align-items: flex-start;
+    gap: .45rem; font-size: .76rem;
+  }
+  .hero-meta > span:nth-child(2), .hero-meta > span:nth-child(4) { display: none; }
+  .stats-grid { gap: 1rem; }
+  .big-stats { gap: .75rem; }
+  .big-stat { padding: .75rem .5rem; }
+  .big-stat-label { font-size: .72rem; }
 }
 
 /* ==========================================
