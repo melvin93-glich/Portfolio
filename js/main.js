@@ -71,7 +71,7 @@
     const el = typeof target === 'string' ? $(target) : target;
     if (!el) return;
     if (lenis) {
-      lenis.scrollTo(el, { offset: -80, duration: 1.2 });
+      lenis.scrollTo(el, { offset: 0, duration: 1.2 });
     } else {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
@@ -141,24 +141,10 @@
   /* ==========================================
      NAVIGATION
      ========================================== */
-  const nav = $('.nav');
   const menuToggle = $('.nav-toggle');
   const menuOverlay = $('.menu-overlay');
-  let lastScrollY = 0;
-  let navHidden = false;
 
   function initNav() {
-    // Hide on scroll down, show on scroll up
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      if (y > 200 && y > lastScrollY) {
-        if (!navHidden) { nav.classList.add('hidden'); navHidden = true; }
-      } else {
-        if (navHidden) { nav.classList.remove('hidden'); navHidden = false; }
-      }
-      lastScrollY = y;
-    }, { passive: true });
-
     // Menu toggle
     menuToggle.addEventListener('click', () => {
       const isOpen = menuOverlay.classList.toggle('open');
@@ -231,7 +217,7 @@
       $$('[data-reveal]').forEach(el => el.classList.add('visible'));
       return;
     }
-    $$('[data-reveal]').forEach(el => {
+    $$('[data-reveal]').filter(el => !el.closest('.section--hero')).forEach(el => {
       gsap.fromTo(el,
         { opacity: 0, y: 40 },
         {
@@ -379,7 +365,7 @@
 
     // Hero content stagger reveal
     if (!prefersReduced) {
-      const heroItems = $$('.hero-content [data-reveal]');
+      const heroItems = $$('.section--hero [data-reveal]');
       gsap.fromTo(heroItems,
         { opacity: 0, y: 30 },
         {
